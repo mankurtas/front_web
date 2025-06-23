@@ -6,15 +6,21 @@ import App from './App.jsx'
 import { BrowserRouter } from 'react-router'
 import { UserContextProvider } from './context/UserContext.jsx'
 import { BooksContextProvider } from './context/BooksContext.jsx'
+import { AuthorsContextProvider } from './context/AuthorContext.jsx'
+import { CategoryContextProvider } from './context/CategoryContex.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <BooksContextProvider>
-    <UserContextProvider>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-    </UserContextProvider>
-    </BooksContextProvider>
+    <CategoryContextProvider>
+      <AuthorsContextProvider>
+        <BooksContextProvider>
+          <UserContextProvider>
+            <BrowserRouter>
+              <App />
+            </BrowserRouter>
+          </UserContextProvider>
+        </BooksContextProvider>
+      </AuthorsContextProvider>
+    </CategoryContextProvider>
   </StrictMode>,
 )
