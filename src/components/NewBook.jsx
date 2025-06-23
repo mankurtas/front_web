@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import { useState, useContext } from "react";
 import {AuthorsContext} from "../context/AuthorContext"
 import {CategoryContext} from "../context/CategoryContex"
+import { BooksContext } from "../context/BooksContext";
 import axios from "axios";
 import { NavLink } from "react-router-dom"; // use react-router-dom not react-router
 import { UserContext } from "../context/UserContext";
@@ -12,6 +13,7 @@ function NewBook() {
 
   const {authors} = useContext(AuthorsContext);
   const {category} = useContext(CategoryContext);
+  const {fetchBooks}= useContext(BooksContext)
   const { register, handleSubmit, reset } = useForm();
   const [addedBook, setAddedBook] = useState(null);
 
@@ -29,6 +31,7 @@ function NewBook() {
       );
 
       setAddedBook(response.data.data);
+      fetchBooks()
       reset();
     } catch (err) {
       console.error("Failed to add book:", err?.response?.data?.message || err.message);
@@ -96,8 +99,6 @@ function NewBook() {
         <div className="max-w-md mx-auto mt-6 p-4 bg-success text-success-content rounded-lg shadow">
           <h3 className="text-lg font-bold mb-2">Book Added!</h3>
           <p><strong>Title:</strong> {addedBook.title}</p>
-          <p><strong>Author ID:</strong> {addedBook.authorid}</p>
-          <p><strong>Category ID:</strong> {addedBook.categoryid}</p>
         </div>
       )}
     </>

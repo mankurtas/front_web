@@ -7,9 +7,7 @@ const apiURL = import.meta.env.VITE_API_URL;
 
 export const BooksContextProvider = ({ children }) => {
   const [books, setBooks] = useState([]);
-
-  useEffect(() => {
-    const fetchBooks = async () => {
+ const fetchBooks = async () => {
       try {
         const response = await axios.get(`${apiURL}books/view` , {
       withCredentials: true,
@@ -19,12 +17,14 @@ export const BooksContextProvider = ({ children }) => {
         console.error("Failed to fetch books:", error?.response?.data?.message || error.message);
       }
     };
+  useEffect(() => {
+   
 
     fetchBooks();
   }, []);
 
   return (
-    <BooksContext.Provider value={{ books, setBooks }}>
+    <BooksContext.Provider value={{ books, setBooks, fetchBooks }}>
       {children}
     </BooksContext.Provider>
   );

@@ -3,14 +3,29 @@ import { useContext } from "react";
 import { BooksContext } from "../context/BooksContext"
 import { UserContext } from "../context/UserContext";
 import { NavLink } from "react-router";
+import { deleteBook } from "../services/deleteBook";
 
 
 
 function BooksList() {
 
-    const { books } = useContext(BooksContext);
+    const { books, fetchBooks } = useContext(BooksContext);
     const { user } = useContext(UserContext)
 
+        const handleDelete = async (id) => {
+        const confirmDelete = window.confirm("Are you sure you want to delete this book?");
+        if (!confirmDelete) return;
+            console.log(id);
+            
+
+        try {
+            await deleteBook(id);
+            await fetchBooks(); // Refresh list after deletion
+        } catch (error) {
+            console.error("Error deleting tour:", error);
+            alert("Failed to delete book. Please try again.");
+        }
+    };
 
     return (
         <div className="bg-base-100 rounded-box shadow-md p-4">
@@ -32,9 +47,11 @@ function BooksList() {
                                 <p className="text-sm text-gray-600">Reserved: {book.reserved ? "Yes" : "No"}</p>
                             </div>
 
-                            {user?.role === 'admin' && (<NavLink to={`/book/${book.id}`} className="btn btn-primary">
+                            {user?.role === 'admin' && (<div><NavLink to={`/book/${book.id}`} className="btn btn-primary">
                                 Edit
                             </NavLink>
+                            <button className="btn btn-md btn-warning " onClick={() => handleDelete(book.id)}>Delete</button>
+                            </div>
                             )}
                         </div>
 
