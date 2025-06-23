@@ -13,7 +13,9 @@ export const CategoryContextProvider = ({ children }) => {
  useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get(`${apiURL}categories/view`);
+        const response = await axios.get(`${apiURL}categories/view`, {
+      withCredentials: true,
+    });
         setCategory(response.data.data); // Adjust if your API wraps this in `.data.data`
       } catch (error) {
         console.error("Failed to fetch Category:", error?.response?.data?.message || error.message);
@@ -24,8 +26,8 @@ export const CategoryContextProvider = ({ children }) => {
   }, []);
 
     return (
-      <CategoryContextProvider value={{ category, setCategory }}>
+      <CategoryContext.Provider value={{ category, setCategory }}>
         {children}
-      </CategoryContextProvider >
+      </CategoryContext.Provider >
     );
   };

@@ -11,7 +11,9 @@ export const BooksContextProvider = ({ children }) => {
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const response = await axios.get(`${apiURL}books/view`);
+        const response = await axios.get(`${apiURL}books/view` , {
+      withCredentials: true,
+    });
         setBooks(response.data.data); // Adjust if your API wraps this in `.data.data`
       } catch (error) {
         console.error("Failed to fetch books:", error?.response?.data?.message || error.message);

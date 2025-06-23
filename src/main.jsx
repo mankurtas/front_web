@@ -11,7 +11,8 @@ import { CategoryContextProvider } from './context/CategoryContex.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <CategoryContextProvider>
+   
+      <CategoryContextProvider>
       <AuthorsContextProvider>
         <BooksContextProvider>
           <UserContextProvider>
@@ -20,7 +21,8 @@ createRoot(document.getElementById('root')).render(
             </BrowserRouter>
           </UserContextProvider>
         </BooksContextProvider>
-      </AuthorsContextProvider>
-    </CategoryContextProvider>
+        </AuthorsContextProvider>
+        </CategoryContextProvider>
+    
   </StrictMode>,
 )
