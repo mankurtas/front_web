@@ -5,6 +5,7 @@ import { UserContext } from "./context/UserContext";
 import { BooksContext } from "./context/BooksContext";
 import BooksList from "./components/BooksList";
 import NewBook from "./components/NewBook";
+import NewCategory from "./components/NewCategory"
 
 
 import { Routes, Route } from "react-router";
@@ -32,6 +33,8 @@ function App() {
 
         <Route path="login" element={<AuthForm/>} />
         <Route path="/insert_book" element={<NewBook/>} />
+        <Route path="/new_cat" element={<NewCategory/>} />
+
        
       </Routes>
     </>

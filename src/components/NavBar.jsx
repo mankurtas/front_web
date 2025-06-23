@@ -42,16 +42,6 @@ export default function NavBar() {
               <span>{label}</span>
             </NavLink>
           ))}
-          {user && (<NavLink
-            to={`/mytours`}
-            className={({ isActive }) =>
-              `flex flex-col items-center text-xs sm:text-sm transition-colors duration-200 ${isActive ? "text-secondary" : "text-neutral hover:text-accent"
-              }`
-            }
-          >
-            <div className="mb-1">{<Compass size={30} />}</div>
-            <span>Mano turai</span>
-          </NavLink>)}
 
 
         </div>
@@ -78,11 +68,3 @@ export default function NavBar() {
   );
 }
 
-
-{/* <div>
-           {user && (
-            <NavLink to={`/mytours`} >
-              <div className="mb-1">{Compass}</div>
-              <span>Mano turai</span>
-            </NavLink>)}
-         </div> */}

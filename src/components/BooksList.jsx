@@ -31,7 +31,7 @@ function BooksList() {
         <div className="bg-base-100 rounded-box shadow-md p-4">
             <h2 className="text-xs opacity-60 tracking-wide mb-2">List of books</h2>
             {user?.role === 'admin' && (<div><NavLink to="/insert_book"> <button className="btn btn-md btn-success ">+ Add Book</button></NavLink>
-                <NavLink to="/insert_book"> <button className="btn btn-md btn-success ">+ Insert Category</button></NavLink></div>
+                <NavLink to="/new_cat"> <button className="btn btn-md btn-success ">+ Insert Category</button></NavLink></div>
             )}
             <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 {books.map((book) => (
