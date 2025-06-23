@@ -12,7 +12,6 @@ export default function NavBar() {
 
   const navItems = [
     { to: "/", label: "Pradžia", icon: <Home size={30} /> },
-    { to: "/tours", label: "Ekskursijos", icon: <Map size={30} /> },
   ];
 
   const logout = async () => {
